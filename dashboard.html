@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <!-- IMPORTANT: No CSS link needed as of v1 - It's all inlined -->
+    <!-- Pre v1.0.0 versions need the minified css -->
+    <!-- <link rel='stylesheet' href='https://unpkg.com/v-calendar/lib/v-calendar.min.css'> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <h3>Current Progress</h3>
+      <div class="progress row" style="margin-top:30px;width:80%">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="row">
+        
+      </div>
+
+      
+      <div class="row" style="margin-top:100px;" >
+        <h3 align="left">Available</h3>
+        <div id='app'>
+          <v-calendar :columns="4" :rows="3" :attributes="attrs" :max-date="new Date()" @dayclick="onDayClick"></v-calendar>
+        </div>
+     </div>
+     <div class="row" style="margin-top:100px;border-radius:5px; background-color: black;color: cadetblue;padding:20px">
+
+    </div>
+    </div>
+
+
+    <!-- 1. Link Vue Javascript -->
+    <script src='https://unpkg.com/vue/dist/vue.js'></script>
+
+    <!-- 2. Link VCalendar Javascript (Plugin automatically installed) -->
+    <script src='https://unpkg.com/v-calendar'></script>
+
+    <!--3. Create the Vue instance-->
+    <script>
+    function data() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    return {
+        attrs: [
+        {
+
+            highlight: {
+            color: 'purple',
+            fillMode: 'solid',
+            contentClass: 'italic',
+            },
+            dates: new Date(year, month, 1),
+        },
+        {
+            highlight: {
+            color: 'purple',
+            fillMode: 'solid',
+            },
+            dates: new Date(year, month, 5),
+        },
+        {
+            highlight: {
+            color: 'purple',
+            fillMode: 'solid',
+            },
+            dates: new Date(year, month, 14),
+        },
+        {
+            highlight: {
+            color: 'purple',
+            fillMode: 'solid',
+            },
+            dates: new Date(year, month, 14),
+        },
+        ],
+    };
+    };
+      new Vue({
+        el: '#app',
+        data: data(),
+        methods:{
+          onDayClick(day){
+            console.log(day);
+            //window.location.href = 'http://www.google.co.in';
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
